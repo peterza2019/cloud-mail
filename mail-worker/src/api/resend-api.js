@@ -19,7 +19,7 @@ app.post('/webhooks', async (c) => {
                         return c.text('Webhook secret not configured', 500);
                 }
 
-                const resend = new Resend();
+                const resend = new Resend(c.env.RESEND_API_KEY);
 
                 const event = resend.webhooks.verify({
                         payload,
