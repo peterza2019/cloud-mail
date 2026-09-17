@@ -128,7 +128,7 @@ const route = useRoute();
   width: 30px;
   height: 30px;
   flex: 0 0 auto;
-  background: var(--mc-paper);
+  background: #F4EDDF;
   color: var(--mc-ink);
   border: 2px solid var(--mc-ink);
   font-family: var(--mc-display);
