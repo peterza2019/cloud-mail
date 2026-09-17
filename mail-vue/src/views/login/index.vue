@@ -8,8 +8,16 @@
       <div class="x5 cloud"></div>
     </div>
     <div v-else :style="background"></div>
+    <section class="mailcat-login-story" aria-label="Mail Cat introduction">
+      <div class="story-kicker">PRIVATE MAIL. SHARP CLAWS.</div>
+      <h1>YOUR INBOX.<br><span>UNDER CONTROL.</span></h1>
+      <p>Fast, focused email running at the edge. No clutter. No nonsense. Just mail that moves.</p>
+      <div class="story-stamp">EDGE-NATIVE<br>MAILROOM</div>
+      <img src="/brand/mail-cat-courier.png" alt="Mail Cat delivering an envelope" class="login-mascot" />
+    </section>
     <div class="form-wrapper">
       <div class="container">
+        <div class="login-eyebrow">MAIL CAT // SECURE ACCESS</div>
         <span class="form-title">{{ settingStore.settings.title }}</span>
         <span class="form-desc" v-if="show === 'login'">{{ $t('loginTitle') }}</span>
         <span class="form-desc" v-else>{{ $t('regTitle') }}</span>
@@ -645,6 +653,83 @@ function submitRegister() {
   }
 }
 
+.mailcat-login-story {
+  position: fixed;
+  inset: 0 450px 0 0;
+  overflow: hidden;
+  padding: clamp(34px, 5vw, 84px);
+  background: var(--mc-orange);
+  color: var(--mc-ink);
+  border-right: 3px solid var(--mc-ink);
+  z-index: 2;
+
+  .story-kicker {
+    display: inline-block;
+    padding: 8px 12px;
+    background: var(--mc-yellow);
+    border: 2px solid var(--mc-ink);
+    box-shadow: 5px 5px 0 var(--mc-ink);
+    font-weight: 900;
+    letter-spacing: .08em;
+  }
+
+  h1 {
+    position: relative;
+    z-index: 2;
+    margin-top: 28px;
+    max-width: 760px;
+    font-family: var(--mc-display);
+    font-size: clamp(56px, 7vw, 116px);
+    line-height: .84;
+    letter-spacing: -.065em;
+    text-transform: uppercase;
+  }
+
+  h1 span { color: var(--mc-paper); }
+
+  p {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    margin-top: 28px;
+    font-size: clamp(17px, 1.6vw, 24px);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .story-stamp {
+    position: absolute;
+    left: clamp(34px, 5vw, 84px);
+    bottom: 48px;
+    transform: rotate(-5deg);
+    padding: 12px 16px;
+    border: 3px solid var(--mc-ink);
+    font-family: var(--mc-display);
+    font-size: 19px;
+    line-height: .9;
+    background: var(--mc-paper);
+    box-shadow: 7px 7px 0 var(--mc-ink);
+  }
+
+  .login-mascot {
+    position: absolute;
+    right: -4vw;
+    bottom: -9vw;
+    width: min(50vw, 720px);
+    max-width: none;
+    transform: rotate(3deg);
+    filter: drop-shadow(12px 14px 0 rgba(18,18,18,.9));
+  }
+}
+
+.login-eyebrow {
+  margin-bottom: 10px;
+  color: var(--mc-orange);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
 .container {
   background: v-bind(loginOpacity);
   padding-left: 40px;
@@ -796,7 +881,7 @@ function submitRegister() {
 
 
 #login-box {
-  background: linear-gradient(to bottom, #2980b9, #6dd5fa, #fff);
+  background: var(--mc-paper);
   font: 100% Arial, sans-serif;
   height: 100%;
   margin: 0;
@@ -808,8 +893,30 @@ function submitRegister() {
 
 
 #background-wrap {
-  height: 100%;
+  display: none;
   z-index: 0;
+}
+
+@media (max-width: 1024px) {
+  .mailcat-login-story { inset: 0 384px 0 0; padding: 36px; }
+  .mailcat-login-story h1 { font-size: clamp(48px, 7vw, 76px); }
+}
+
+@media (max-width: 767px) {
+  #login-box { overflow-y: auto; }
+  .mailcat-login-story {
+    position: relative;
+    inset: auto;
+    min-height: 300px;
+    padding: 26px 22px;
+    border-right: 0;
+    border-bottom: 3px solid var(--mc-ink);
+  }
+  .mailcat-login-story h1 { margin-top: 20px; font-size: clamp(43px, 14vw, 68px); }
+  .mailcat-login-story p { max-width: 65%; margin-top: 18px; font-size: 16px; }
+  .mailcat-login-story .login-mascot { width: 58%; right: -10%; bottom: -16%; }
+  .mailcat-login-story .story-stamp { display: none; }
+  .form-wrapper { position: relative; min-height: calc(100vh - 300px); }
 }
 
 @keyframes animateCloud {

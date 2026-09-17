@@ -7,6 +7,7 @@
     <div v-perm="'email:send'" class="writer-box" @click="openSend">
       <div class="writer">
         <Icon icon="material-symbols:edit-outline-sharp" width="22" height="22"/>
+        <span class="writer-text">COMPOSE</span>
       </div>
     </div>
     <div class="toolbar">
@@ -376,20 +377,24 @@ function formatName(email) {
   margin-left: 5px;
 
   .writer {
-    width: 34px;
+    width: auto;
     height: 34px;
-    border-radius: 50%;
-    color: #ffffff;
-    background: linear-gradient(135deg, #1890ff, #3a80dd);
+    padding: 0 13px;
+    border-radius: 0;
+    color: var(--mc-ink);
+    background: var(--mc-orange);
+    border: 2px solid var(--mc-ink);
+    box-shadow: 4px 4px 0 var(--mc-ink);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .writer-text {
-      margin-left: 15px;
-      font-size: 14px;
-      font-weight: bold;;
+      margin-left: 7px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
     }
   }
 }
@@ -402,8 +407,10 @@ function formatName(email) {
 }
 
 .breadcrumb-item {
-  font-weight: bold;
-  font-size: 14px;
+  font-family: var(--mc-display);
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
   color: var(--el-text-color-primary);
   overflow: hidden;
   white-space: nowrap;

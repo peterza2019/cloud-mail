@@ -10,6 +10,7 @@
           <span class="sender-name">{{ form.name }}</span>
           <span class="send-email"><{{ form.sendEmail }}></span>
         </div>
+        <div class="compose-label">MAKE IT WORTH OPENING.</div>
         <div @click="close" style="cursor: pointer;">
           <Icon icon="material-symbols-light:close-rounded" width="22" height="22"/>
         </div>
@@ -634,7 +635,9 @@ function close() {
     border: 1px solid var(--el-border-color-light);
     transition: var(--el-transition-duration);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 0;
+    border: 3px solid var(--mc-ink);
+    box-shadow: 12px 12px 0 var(--mc-ink);
     display: grid;
     grid-template-rows: auto 1fr;
     overflow: hidden;
@@ -654,6 +657,8 @@ function close() {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--mc-ink);
 
       .title-left {
         align-items: center;
@@ -686,6 +691,17 @@ function close() {
         display: flex;
         align-items: center;
       }
+    }
+
+    .compose-label {
+      margin-left: auto;
+      margin-right: 16px;
+      padding: 5px 8px;
+      background: var(--mc-yellow);
+      border: 2px solid var(--mc-ink);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .1em;
     }
 
     .container {
