@@ -37,7 +37,12 @@ run_worker_first = true
 crons = ["0 * * * *"]
 
 [vars]
-domain = ["mailcat.co.za"]
+domain = [
+  "mailcat.co.za",
+  "fortunetellers.co.za",
+  "koolooma.co.za"
+]
+
 admin = "admin@mailcat.co.za"
 
 [[routes]]
