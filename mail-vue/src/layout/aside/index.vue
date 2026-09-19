@@ -64,6 +64,19 @@
           <Icon icon="eos-icons:system-ok-outlined" width="18" height="18" style="margin-left: 2px" />
           <span class="menu-name" style="margin-left: 17px">{{$t('SystemSettings')}}</span>
         </el-menu-item>
+
+<el-menu-item
+  @click="router.push({name: 'templates'})"
+  index="templates"
+  :class="route.meta.name === 'templates' ? 'choose-item' : ''"
+>
+  <Icon icon="fluent:mail-template-20-regular" width="20" height="20" />
+  <span class="menu-name" style="margin-left: 16px">
+    Templates
+  </span>
+</el-menu-item>
+
+
       </el-menu>
     </div>
   </el-scrollbar>

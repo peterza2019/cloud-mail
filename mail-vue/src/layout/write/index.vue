@@ -92,6 +92,7 @@
       </div>
     </el-dialog>
   </div>
+
 </template>
 <script setup>
 import tinyEditor from '@/components/tiny-editor/index.vue'
@@ -115,6 +116,52 @@ import dayjs from "dayjs";
 import {useI18n} from "vue-i18n";
 import router from "@/router/index.js";
 import {ElMessageBox} from "element-plus";
+
+const MAILCAT_TEMPLATE_HTML_KEY =
+  'mailcat.compose.html'
+
+const MAILCAT_TEMPLATE_META_KEY =
+  'mailcat.compose.template'
+
+function consumeMailCatTemplate() {
+  const html =
+    localStorage.getItem(
+      MAILCAT_TEMPLATE_HTML_KEY
+    )
+
+  if (!html) {
+    return null
+  }
+
+  let metadata = null
+
+  const rawMetadata =
+    localStorage.getItem(
+      MAILCAT_TEMPLATE_META_KEY
+    )
+
+  if (rawMetadata) {
+    try {
+      metadata =
+        JSON.parse(rawMetadata)
+    } catch {
+      metadata = null
+    }
+  }
+
+  localStorage.removeItem(
+    MAILCAT_TEMPLATE_HTML_KEY
+  )
+
+  localStorage.removeItem(
+    MAILCAT_TEMPLATE_META_KEY
+  )
+
+  return {
+    html,
+    metadata
+  }
+}
 
 defineExpose({
   open,
@@ -537,7 +584,14 @@ const handleKeyDown = (event) => {
 
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
+
+  const template = consumeMailCatTemplate();
+
+  if (template) {
+    defValue.value = template.html;
+  }
 });
+
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown);
