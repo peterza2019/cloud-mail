@@ -28,3 +28,7 @@ mail-vue/dist
 git-tools.js
 
 /mail-worker/backups/
+
+# Local Cloudflare secrets
+mail-worker/.dev.vars
+mail-worker/.dev.vars.*
